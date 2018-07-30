@@ -1,0 +1,101 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    li{
+        list-style: none;
+    }
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .accordion-list{
+        display: block;
+        border:1px solid #000;
+        cursor: pointer;
+        position: relative;
+        transition: 0.3s;
+    }
+    .accordion-list:nth-of-type(2),.accordion-list:nth-of-type(3){
+        border-top: 0;
+    }
+    .accordion-list .title{
+        padding: 15px;
+        position: relative;
+        z-index: 10;
+    }
+    .accordion-item{
+        border-top:1px solid #000;
+        transition: 0.3s;
+        visibility: hidden;
+        opacity: 0;
+        padding: 15px;
+        transform: translateY(-50px);
+        position: absolute;
+        width: 100%;
+    }
+    .accordion-list.active{
+        padding-bottom: 50px;
+        background: #dd0;
+    }
+    .accordion-list.active .accordion-item{
+        display: block;
+        background: rgb(0, 255, 157);
+        visibility: visible;
+        opacity: 1;
+        position: absolute;
+        bottom: 0;
+        border-top: 0;
+        transform: translateY(0px);
+    }
+</style>
+<body>
+    
+</body>
+<script>
+   var accordionDOM = 
+        `
+            <div class="accordion-menu">
+                <li onclick="changing(event)" class="accordion-list active">
+                    <div class="title">1</div>
+                    <div class="accordion-item"><p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p></div>
+                </li>
+                <li onclick="changing(event)" class="accordion-list">
+                    <div class="title">2</div>
+                    <div class="accordion-item"><p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p></div>
+                </li>
+                <li onclick="changing(event)" class="accordion-list">
+                    <div class="title">3</div>
+                    <div class="accordion-item"><p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p></div>
+                </li>
+            </div>
+        `;
+
+        var body = document.getElementsByTagName('body')[0];
+        var list = document.getElementsByClassName('accordion-list');
+        var item = document.getElementsByClassName('accordion-item');
+
+        body.innerHTML = accordionDOM;
+        var height;
+        function changing(evt){
+            height = evt.currentTarget.offsetHeight - 48;
+            console.log(height)
+            
+            for(var o=0;o<list.length;o++){ 
+                list[o].className = list[o].className.replace(" active", "");
+            } 
+            evt.currentTarget.className += " active";
+        }
+        
+            
+            
+
+        
+        
+    
+</script>
+</html>
